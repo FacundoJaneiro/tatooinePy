@@ -2,13 +2,15 @@
 # TatooinePy
 
 
+## Variables de Entorno 🦾
 
-
+Debemos crear en la raiz del proyecto un archivo .env que contenga las siguientes variables de entorno
+- DATABASE_URI = (URI de nuestra base de datos)
 
 
 ## Deployment 🦾
 
-Para deployar este proyecto 
+Para deployar este proyecto
 
 - Abrimos el entrono virtual desde la ruta del proyecto
 
