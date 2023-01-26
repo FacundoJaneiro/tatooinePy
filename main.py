@@ -1,15 +1,8 @@
-from Dtos.usuario import UserSchema
-from config import db, app, create_tables
-from Entities.usuario import User
-from flask import jsonify
+from config import app, create_tables
+from Controllers.usuariosController import usuariosController
 
 
-@app.route("/")
-def hello():
-    users = User.query.all()
-    user_schema = UserSchema(many=True)
-    result = user_schema.dump(users)
-    return jsonify(result)
+app.register_blueprint(usuariosController, url_prefix='/users')
 
 
 if __name__ == "__main__":

@@ -1,3 +1,5 @@
+from sqlalchemy import ForeignKey
+
 from config import db
 
 
@@ -10,4 +12,5 @@ class User(db.Model):
     emailUsuario = db.Column(db.String(50), unique=True)
     passwordUsuario = db.Column(db.String(10))
     avatarUsuario = db.Column(db.String(20))
+    FK_rol = db.Column(db.Integer, ForeignKey('roles.PK_rol'))
 
