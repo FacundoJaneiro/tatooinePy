@@ -12,3 +12,7 @@ class InterfazUsuarioService(ABC):
     @abstractmethod
     def getId(self) -> User:
         pass
+
+    @abstractmethod
+    def save(self):
+        pass

@@ -1,6 +1,6 @@
 from Entities.usuario import User
 from Exceptions.userNotFoundException import UserNotFoundException
-
+from config import db
 
 class UsuarioRepository():
 
@@ -13,3 +13,10 @@ class UsuarioRepository():
         if user is None:
             raise UserNotFoundException
         return user
+
+    def save(self, user):
+        db.session.add(user)
+        db.session.commit()
+
+
+
