@@ -1,13 +1,14 @@
 from flask import Blueprint, jsonify
-from Dtos.usuario import UserDto
-from Entities.usuario import User
+from Dtos.Usuario.usuarioDto import UserDto
+from Services.UsuarioService import UsuarioService
 
 usuariosController = Blueprint('usuariosController', __name__)
+usuarioService = UsuarioService()
 
 
-@usuariosController.route("/")
-def hello():
-    user = User.query.filter_by(PK_usuario=1).first()
+@usuariosController.route("/<int:id>")
+def getId(id):
+    user = usuarioService.getId(id)
     usersdto = UserDto()
     result = usersdto.dump(user)
     return jsonify(result)

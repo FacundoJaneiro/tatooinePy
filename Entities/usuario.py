@@ -1,5 +1,5 @@
 from sqlalchemy import ForeignKey
-
+from Entities.rol import Rol
 from config import db
 
 
@@ -13,4 +13,4 @@ class User(db.Model):
     passwordUsuario = db.Column(db.String(10))
     avatarUsuario = db.Column(db.String(20))
     FK_rol = db.Column(db.Integer, ForeignKey('roles.PK_rol'))
-
+    rol = db.relationship("Rol", backref=db.backref("usuarios", lazy='dynamic'))
