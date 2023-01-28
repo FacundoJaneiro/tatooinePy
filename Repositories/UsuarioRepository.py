@@ -1,4 +1,5 @@
 from Entities.usuario import User
+from Exceptions.userNotFoundException import UserNotFoundException
 
 
 class UsuarioRepository():
@@ -9,4 +10,6 @@ class UsuarioRepository():
 
     def getId(self, id):
         user = User.query.filter_by(PK_usuario=id).first()
+        if user is None:
+            raise UserNotFoundException
         return user
