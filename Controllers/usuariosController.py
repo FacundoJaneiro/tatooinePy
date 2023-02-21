@@ -41,4 +41,4 @@ def create():
 @handle_exceptions
 def delete(id):
     usuarioService.delete(id)
-    return jsonify({"message": "User delete successfully"}), 201
+    return jsonify({"message": "Accedimos correctamente"}), 201

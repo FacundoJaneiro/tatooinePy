@@ -1,5 +1,6 @@
 from Repositories.UsuarioRepository import UsuarioRepository
 from Services.interfazUsuarioService import InterfazUsuarioService
+from werkzeug.security import generate_password_hash
 from Entities.usuario import User
 
 
@@ -16,6 +17,8 @@ class UsuarioService(InterfazUsuarioService):
         return user
 
     def save(self, user):
+        hashed_password = generate_password_hash(user.passwordUsuario)
+        user.passwordUsuario = hashed_password
         self.usuarioRepository.save(user)
 
     def delete(self, id):
