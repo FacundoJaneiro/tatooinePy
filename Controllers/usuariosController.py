@@ -35,3 +35,10 @@ def create():
     user = User(**data)
     usuarioService.save(user)
     return jsonify({"message": "User created successfully"}), 201
+
+
+@usuariosController.route("/<int:id>", methods=['DELETE'])
+@handle_exceptions
+def delete(id):
+    usuarioService.delete(id)
+    return jsonify({"message": "User delete successfully"}), 201

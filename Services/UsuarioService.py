@@ -18,3 +18,5 @@ class UsuarioService(InterfazUsuarioService):
     def save(self, user):
         self.usuarioRepository.save(user)
 
+    def delete(self, id):
+        self.usuarioRepository.delete(id)

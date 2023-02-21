@@ -16,3 +16,7 @@ class InterfazUsuarioService(ABC):
     @abstractmethod
     def save(self):
         pass
+
+    @abstractmethod
+    def delete(self):
+        pass
