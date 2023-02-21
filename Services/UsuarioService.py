@@ -25,4 +25,10 @@ class UsuarioService(InterfazUsuarioService):
         self.usuarioRepository.delete(id)
 
     def modify(self, user):
-        self.usuarioRepository.modify(user)
+        userToModify = self.usuarioRepository.getId(user.PK_usuario)
+        user_dict = vars(user)
+        for Attr, Value in user_dict.items():
+            if not Attr.startswith('_') and Value is not None:
+                setattr(userToModify, Attr, Value)
+
+        self.usuarioRepository.modify()
