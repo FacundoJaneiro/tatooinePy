@@ -24,3 +24,7 @@ class InterfazUsuarioService(ABC):
     @abstractmethod
     def modify(self):
         pass
+
+    @abstractmethod
+    def login(self):
+        pass

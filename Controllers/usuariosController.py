@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, request
 from Entities.usuario import User
-from Dtos.Usuario.usuarioDto import UserDto
-from Dtos.Usuario.userAltaDto import UserAltaDto
-from Dtos.Usuario.userModificacionDto import UserModificacionDto
+from Dtos.Usuario.Responses.usuarioDto import UserDto
+from Dtos.Usuario.Request.userAltaDto import UserAltaDto
+from Dtos.Usuario.Request.userModificacionDto import UserModificacionDto
+from Dtos.Usuario.Request.userLoginDto import UserLoginDto
 from Exceptions.wrapperExceptions import handle_exceptions
 from Services.UsuarioService import UsuarioService
 
@@ -53,3 +54,13 @@ def modify():
     user = User(**data)
     usuarioService.modify(user)
     return jsonify({"message": "User modify successfully"}), 201
+
+
+@usuariosController.route("/login", methods=['POST'])
+@handle_exceptions
+def login():
+    dto = UserLoginDto()
+    data = dto.load(request.json)
+    user = User(**data)
+    token = usuarioService.login(user)
+    return jsonify({"token": token}), 201

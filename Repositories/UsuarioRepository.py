@@ -30,4 +30,10 @@ class UsuarioRepository():
     def modify(self):
         db.session.commit()
 
+    def searchEmail(self, email):
+        user = User.query.filter_by(emailUsuario=email, statusUsuario=1).first()
+        if user is None:
+            raise UserNotFoundException
+        return user
+
 

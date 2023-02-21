@@ -1,6 +1,7 @@
 from Repositories.UsuarioRepository import UsuarioRepository
 from Services.interfazUsuarioService import InterfazUsuarioService
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
+from Exceptions.userPasswordNotFoundException import UserPasswordNotFoundException
 from Entities.usuario import User
 
 
@@ -32,3 +33,14 @@ class UsuarioService(InterfazUsuarioService):
                 setattr(userToModify, Attr, Value)
 
         self.usuarioRepository.modify()
+
+    def login(self, user):
+        userToCheck = self.usuarioRepository.searchEmail(user.emailUsuario)
+        if check_password_hash(userToCheck.passwordUsuario, user.passwordUsuario):
+            # Aqui desarrollo la logica del token
+            token = 'TokenUltraSecretElCualNuncaPodrasSaber'
+            userToCheck.token = token
+        else:
+            raise UserPasswordNotFoundException
+
+        return token
