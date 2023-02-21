@@ -23,3 +23,6 @@ class UsuarioService(InterfazUsuarioService):
 
     def delete(self, id):
         self.usuarioRepository.delete(id)
+
+    def modify(self, user):
+        self.usuarioRepository.modify(user)

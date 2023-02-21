@@ -27,3 +27,16 @@ class UsuarioRepository():
             user.statusUsuario = 0
             db.session.commit()
 
+    def modify(self, userInfo):
+        user = User.query.filter_by(PK_usuario=userInfo.PK_usuario, statusUsuario=1).first()
+        if user is None:
+            raise UserNotFoundException
+
+        user_dict = vars(userInfo)
+        for Attr, Value in user_dict.items():
+            if not Attr.startswith('_') and Value is not None:
+                setattr(user, Attr, Value)
+
+        db.session.commit()
+
+

@@ -14,6 +14,7 @@ def handle_exceptions(f):
             message = list(err.messages.values())[0][0]
             return jsonify({"error": message}), 400
         except Exception as e:
+            print(e)
             return jsonify({"error": "An internal server error occurred"}), 500
 
     wrapper.__name__ = f"{f.__name__}_wrapper"

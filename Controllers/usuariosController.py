@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from Entities.usuario import User
 from Dtos.Usuario.usuarioDto import UserDto
 from Dtos.Usuario.userAltaDto import UserAltaDto
+from Dtos.Usuario.userModificacionDto import UserModificacionDto
 from Exceptions.wrapperExceptions import handle_exceptions
 from Services.UsuarioService import UsuarioService
 
@@ -41,4 +42,14 @@ def create():
 @handle_exceptions
 def delete(id):
     usuarioService.delete(id)
-    return jsonify({"message": "Accedimos correctamente"}), 201
+    return jsonify({"message": "User deleted successfully"}), 201
+
+
+@usuariosController.route("/", methods=['PUT'])
+@handle_exceptions
+def modify():
+    dto = UserModificacionDto()
+    data = dto.load(request.json)
+    user = User(**data)
+    usuarioService.modify(user)
+    return jsonify({"message": "User modify successfully"}), 201

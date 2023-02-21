@@ -20,3 +20,7 @@ class InterfazUsuarioService(ABC):
     @abstractmethod
     def delete(self):
         pass
+
+    @abstractmethod
+    def modify(self):
+        pass
