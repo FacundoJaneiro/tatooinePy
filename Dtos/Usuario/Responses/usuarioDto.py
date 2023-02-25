@@ -9,4 +9,5 @@ class UserDto(Schema):
     emailUsuario = fields.String()
     passwordUsuario = fields.String()
     avatarUsuario = fields.String()
-    FK_rol = fields.Integer()
+    descripcionRol = fields.String(attribute='rol.descripcionRol')
+    seguridadRol = fields.String(attribute='rol.seguridadRol')
