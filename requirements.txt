@@ -11,5 +11,5 @@ packaging==23.0
 PyMySQL==1.0.2
 python-dotenv==0.21.1
 SQLAlchemy==1.4.46
-Werkzeug==2.2.2
+Werkzeug==2.2.3
 zipp==3.11.0
