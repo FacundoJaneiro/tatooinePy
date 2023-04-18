@@ -5,9 +5,11 @@ from Dtos.Usuario.Request.userAltaDto import UserAltaDto
 from Dtos.Usuario.Request.userModificacionDto import UserModificacionDto
 from Dtos.Usuario.Request.userLoginDto import UserLoginDto
 from Exceptions.wrapperExceptions import handle_exceptions
+from Handlers.tokensHandler import TokenHandler
 from Services.UsuarioService import UsuarioService
 
 usuariosController = Blueprint('usuariosController', __name__)
+tokenHandler = TokenHandler()
 usuarioService = UsuarioService()
 
 
@@ -62,5 +64,7 @@ def login():
     dto = UserLoginDto()
     data = dto.load(request.json)
     user = User(**data)
-    token = usuarioService.login(user)
+    info = usuarioService.login(user)
+    token = tokenHandler.encode_token(info)
+    tokenHandler.decode_token('asda')
     return jsonify({"token": token}), 201
