@@ -16,6 +16,7 @@ usuarioService = UsuarioService()
 @usuariosController.route("/")
 @handle_exceptions
 def getAll():
+    tokenHandler.validator(request.headers.get('Authorization'), 10)
     users = usuarioService.getAll()
     usersdto = UserDto(many=True)
     result = usersdto.dump(users)
@@ -25,6 +26,7 @@ def getAll():
 @usuariosController.route("/<int:id>")
 @handle_exceptions
 def getId(id):
+    tokenHandler.validator(request.headers.get('Authorization'), 10)
     user = usuarioService.getId(id)
     usersdto = UserDto()
     result = usersdto.dump(user)
@@ -34,6 +36,7 @@ def getId(id):
 @usuariosController.route("/", methods=['POST'])
 @handle_exceptions
 def create():
+    tokenHandler.validator(request.headers.get('Authorization'), 10)
     userDto = UserAltaDto()
     data = userDto.load(request.json)
     user = User(**data)
@@ -44,18 +47,20 @@ def create():
 @usuariosController.route("/<int:id>", methods=['DELETE'])
 @handle_exceptions
 def delete(id):
+    tokenHandler.validator(request.headers.get('Authorization'), 10)
     usuarioService.delete(id)
-    return jsonify({"message": "User deleted successfully"}), 201
+    return jsonify({"message": "User deleted successfully"}), 204
 
 
 @usuariosController.route("/", methods=['PUT'])
 @handle_exceptions
 def modify():
+    tokenHandler.validator(request.headers.get('Authorization'), 10)
     dto = UserModificacionDto()
     data = dto.load(request.json)
     user = User(**data)
     usuarioService.modify(user)
-    return jsonify({"message": "User modify successfully"}), 201
+    return jsonify({"message": "User modify successfully"}), 200
 
 
 @usuariosController.route("/login", methods=['POST'])
@@ -66,5 +71,4 @@ def login():
     user = User(**data)
     info = usuarioService.login(user)
     token = tokenHandler.encode_token(info)
-    tokenHandler.decode_token('asda')
-    return jsonify({"token": token}), 201
+    return jsonify({"token": token}), 200
