@@ -1,3 +1,4 @@
+import datetime
 import os
 import jwt
 from Exceptions.InvalidTokenException import InvalidTokenException
@@ -39,6 +40,8 @@ class TokenHandler:
 
     def encode_token(self, payload):
         ##encoded_token = jwt.encode(payload, self.secret_key, algorithm='RS256')
+        exp_time = datetime.datetime.utcnow() + datetime.timedelta(hours=12)
+        payload['exp'] = int(exp_time.timestamp())
         encoded_token = jwt.encode(payload, self.public_key, algorithm='HS256')
         return encoded_token
 
