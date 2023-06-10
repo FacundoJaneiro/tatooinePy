@@ -53,11 +53,12 @@ class TokenHandler:
         except:
             raise InvalidTokenException
 
-    def validator(self, bearerToken, level):
+    def validator(self, bearerToken, roles):
         if not bearerToken:
             raise TokenNotFoundException
         token = bearerToken.split(" ")[1]
         info = self.decode_token(token)
-        if info["security"] < level:
+
+        if info["rol"] not in roles:
             raise UnauthorizedException
         return info

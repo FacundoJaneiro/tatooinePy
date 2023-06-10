@@ -54,8 +54,7 @@ class UsuarioService(InterfazUsuarioService):
 
             info = {'id': userToCheck.PK_usuario,
                     'username': userToCheck.nombreUsuario + ' ' + userToCheck.apellidoUsuario,
-                    'rol': userToCheck.rol.seguridadRol,
-                    'security': userToCheck.rol.seguridadRol
+                    'rol': userToCheck.rol.descripcionRol
                     }
 
         else:
