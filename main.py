@@ -1,5 +1,5 @@
 from config import app, create_tables
-from controllers.usuariosController import usuariosController
+from Controllers.usuariosController import usuariosController
 
 
 app.register_blueprint(usuariosController, url_prefix='/users')
