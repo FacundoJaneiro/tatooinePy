@@ -1,8 +1,10 @@
 from config import app, create_tables
 from Controllers.usuariosController import usuariosController
+from Controllers.materiasPrimasController import materiasPrimasController
 
 
 app.register_blueprint(usuariosController, url_prefix='/users')
+app.register_blueprint(materiasPrimasController, url_prefix='/materiasPrimas')
 
 
 if __name__ == "__main__":
