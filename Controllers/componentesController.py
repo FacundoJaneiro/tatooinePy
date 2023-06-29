@@ -9,11 +9,13 @@ tokenHandler = TokenHandler()
 componenteService = ComponenteService()
 
 
-@componenteController.route("/<int:id>")
+@componenteController.route("/materiasPrimas", methods=['GET'])
+@componenteController.route("/insumos", methods=['GET'])
 @handle_exceptions
-def getAll(id):
+def getComponentes():
     tokenHandler.validator(request.headers.get('Authorization'), ['Administrador'])
-    componentes = componenteService.getAll(id)
+    tipo = 1 if request.path == '/componentes/materiasPrimas' else 2
+    componentes = componenteService.getAll(tipo)
     componenteDto = ComponenteDto(many=True)
     result = componenteDto.dump(componentes)
     return jsonify(result)
