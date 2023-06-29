@@ -20,8 +20,12 @@ class ComponenteService(InterfazComponenteService):
     def save(self, componente):
         self.componenteRepository.save(componente)
 
-    def delete(self):
-        pass
+    def delete(self,tipo, id):
+        componenteToDelete = self.componenteRepository.getId(tipo,id)
+        if componenteToDelete is None:
+            raise ComponenteNotFoundException
+        else:
+            self.componenteRepository.delete(componenteToDelete)
 
     def modify(self, componente):
         componenteToModify = self.componenteRepository.getId(componente.tipo,componente.PK_componente)

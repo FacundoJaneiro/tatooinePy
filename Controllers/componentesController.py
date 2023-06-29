@@ -62,3 +62,13 @@ def modify():
     componente.tipo = tipo
     componenteService.modify(componente)
     return jsonify({"message": "Componente modify successfully"}), 200
+
+
+@componenteController.route("/materiasPrimas/<int:id>", methods=['DELETE'])
+@componenteController.route("/insumos/<int:id>", methods=['DELETE'])
+@handle_exceptions
+def delete(id):
+    tokenHandler.validator(request.headers.get('Authorization'), ['Administrador'])
+    tipo = 1 if 'materiasPrimas' in request.path else 2
+    componenteService.delete(tipo,id)
+    return jsonify({"message": "Componente deleted successfully"}), 204

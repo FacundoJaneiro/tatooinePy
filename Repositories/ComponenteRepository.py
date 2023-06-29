@@ -18,8 +18,9 @@ class ComponenteRepository():
         db.session.add(componente)
         db.session.commit()
 
-    def delete(self, user):
-        pass
+    def delete(self, componente):
+        componente.status = 0
+        db.session.commit()
 
     def modify(self):
         db.session.commit()
