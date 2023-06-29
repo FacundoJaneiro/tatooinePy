@@ -1,15 +1,15 @@
 from abc import ABC, abstractmethod
 from typing import List
-from Entities.materiaPrima import MateriaPrima
+from Entities.componente import Componente
 
 
-class InterfazMateriaPrimaService(ABC):
+class InterfazComponenteService(ABC):
     @abstractmethod
-    def getAll(self) -> List[MateriaPrima]:
+    def getAll(self,tipo) -> List[Componente]:
         pass
 
     @abstractmethod
-    def getId(self) -> MateriaPrima:
+    def getId(self) -> Componente:
         pass
 
     @abstractmethod

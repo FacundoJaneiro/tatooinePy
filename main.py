@@ -1,10 +1,11 @@
 from config import app, create_tables
 from Controllers.usuariosController import usuariosController
-from Controllers.materiasPrimasController import materiasPrimasController
+from Controllers.componentesController import componenteController
 
 
 app.register_blueprint(usuariosController, url_prefix='/users')
-app.register_blueprint(materiasPrimasController, url_prefix='/materiasPrimas')
+app.register_blueprint(componenteController, url_prefix='/componentes')
+
 
 
 if __name__ == "__main__":

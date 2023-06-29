@@ -1,8 +1,8 @@
 from marshmallow import Schema, fields
 
 
-class MateriaPrimaDto(Schema):
-    PK_materiaPrima = fields.Integer()
+class ComponenteDto(Schema):
+    PK_componente = fields.Integer()
     identifiacion = fields.String()
     nombre = fields.String()
     descripcion = fields.String()

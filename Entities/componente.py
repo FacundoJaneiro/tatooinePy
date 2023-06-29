@@ -4,9 +4,9 @@ from Entities.unidadDeMedida import UnidadMedida
 from config import db
 
 
-class MateriaPrima(db.Model):
-    __tablename__ = 'materiasPrimas'
-    PK_materiaPrima = db.Column(db.Integer, primary_key=True, autoincrement=True)
+class Componente(db.Model):
+    __tablename__ = 'componentes'
+    PK_componente = db.Column(db.Integer, primary_key=True, autoincrement=True)
     identifiacion = db.Column(db.String(30))
     nombre = db.Column(db.String(50))
     descripcion = db.Column(db.String(120))
