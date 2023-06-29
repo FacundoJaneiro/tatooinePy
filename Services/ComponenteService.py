@@ -17,8 +17,8 @@ class ComponenteService(InterfazComponenteService):
             raise ComponenteNotFoundException
         return componente
 
-    def save(self):
-        pass
+    def save(self, componente):
+        self.componenteRepository.save(componente)
 
     def delete(self):
         pass

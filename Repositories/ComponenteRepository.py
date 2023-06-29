@@ -14,8 +14,9 @@ class ComponenteRepository():
         componente = Componente.query.filter_by(PK_componente=id, status=1, tipo=tipo).first()
         return componente
 
-    def save(self, user):
-        pass
+    def save(self, componente):
+        db.session.add(componente)
+        db.session.commit()
 
     def delete(self, user):
         pass
