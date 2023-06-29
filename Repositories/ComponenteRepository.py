@@ -10,8 +10,9 @@ class ComponenteRepository():
         componente = componente.filter(text(""))
         return componente
 
-    def getId(self, id):
-        pass
+    def getId(self, tipo, id):
+        componente = Componente.query.filter_by(PK_componente=id, status=1, tipo=tipo).first()
+        return componente
 
     def save(self, user):
         pass

@@ -1,5 +1,6 @@
 from Repositories.ComponenteRepository import ComponenteRepository
 from Services.interfazComponenteService import InterfazComponenteService
+from  Exceptions.componenteNotFoundException import ComponenteNotFoundException
 
 
 class ComponenteService(InterfazComponenteService):
@@ -10,8 +11,11 @@ class ComponenteService(InterfazComponenteService):
         componentes = self.componenteRepository.getAll(tipo)
         return componentes
 
-    def getId(self):
-        pass
+    def getId(self,tipo,id):
+        componente = self.componenteRepository.getId(tipo,id)
+        if componente is None:
+            raise ComponenteNotFoundException
+        return componente
 
     def save(self):
         pass

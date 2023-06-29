@@ -5,7 +5,7 @@ from Entities.componente import Componente
 
 class InterfazComponenteService(ABC):
     @abstractmethod
-    def getAll(self,tipo) -> List[Componente]:
+    def getAll(self) -> List[Componente]:
         pass
 
     @abstractmethod
