@@ -1,6 +1,6 @@
 from Repositories.ComponenteRepository import ComponenteRepository
 from Services.interfazComponenteService import InterfazComponenteService
-from  Exceptions.componenteNotFoundException import ComponenteNotFoundException
+from Exceptions.componenteNotFoundException import ComponenteNotFoundException
 
 
 class ComponenteService(InterfazComponenteService):
@@ -23,5 +23,13 @@ class ComponenteService(InterfazComponenteService):
     def delete(self):
         pass
 
-    def modify(self):
-        pass
+    def modify(self, componente):
+        componenteToModify = self.componenteRepository.getId(componente.tipo,componente.PK_componente)
+        if componenteToModify is None:
+            raise ComponenteNotFoundException
+        componente_dict = vars(componente)
+        for Attr, Value in componente_dict.items():
+            if not Attr.startswith('_') and Value is not None:
+                setattr(componenteToModify, Attr, Value)
+
+        self.componenteRepository.modify()

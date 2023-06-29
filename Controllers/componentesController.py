@@ -5,6 +5,7 @@ from Services.ComponenteService import ComponenteService
 from Entities.componente import Componente
 from Dtos.Componente.Responses.componenteDto import ComponenteDto
 from Dtos.Componente.Request.componenteAltaDto import ComponenteAltaDto
+from Dtos.Componente.Request.componenteModifciacionDto import ComponenteModificacionDto
 
 componenteController = Blueprint('componenteController', __name__)
 tokenHandler = TokenHandler()
@@ -48,3 +49,16 @@ def create():
     componenteService.save(componente)
     return jsonify({"message": "Componente created successfully"}), 201
 
+
+@componenteController.route("/materiasPrimas", methods=['PUT'])
+@componenteController.route("/insumos", methods=['PUT'])
+@handle_exceptions
+def modify():
+    tokenHandler.validator(request.headers.get('Authorization'), ['Administrador'])
+    tipo = 1 if 'materiasPrimas' in request.path else 2
+    dto = ComponenteModificacionDto()
+    data = dto.load(request.json)
+    componente = Componente(**data)
+    componente.tipo = tipo
+    componenteService.modify(componente)
+    return jsonify({"message": "Componente modify successfully"}), 200

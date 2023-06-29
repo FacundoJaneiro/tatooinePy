@@ -22,4 +22,4 @@ class ComponenteRepository():
         pass
 
     def modify(self):
-        pass
+        db.session.commit()
