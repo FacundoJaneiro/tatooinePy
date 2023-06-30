@@ -16,7 +16,7 @@ componenteService = ComponenteService()
 @componenteController.route("/insumos", methods=['GET'])
 @handle_exceptions
 def getComponentes():
-    #tokenHandler.validator(request.headers.get('Authorization'), ['Administrador'])
+    tokenHandler.validator(request.headers.get('Authorization'), ['Administrador'])
     tipo = 1 if 'materiasPrimas' in request.path else 2
     componentes = componenteService.getAll(tipo)
     componenteDto = ComponenteDto(many=True)
