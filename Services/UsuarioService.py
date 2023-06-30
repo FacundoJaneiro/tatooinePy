@@ -51,10 +51,13 @@ class UsuarioService(InterfazUsuarioService):
         if userToCheck is None:
             raise UserNotFoundException
         if check_password_hash(userToCheck.passwordUsuario, user.passwordUsuario):
-            # Aqui desarrollo la logica del token
-            token = 'TokenUltraSecretElCualNuncaPodrasSaber'
-            userToCheck.token = token
+
+            info = {'id': userToCheck.PK_usuario,
+                    'username': userToCheck.nombreUsuario + ' ' + userToCheck.apellidoUsuario,
+                    'rol': userToCheck.rol.descripcionRol
+                    }
+
         else:
             raise UserPasswordNotFoundException
 
-        return token
+        return info

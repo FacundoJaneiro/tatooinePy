@@ -1,17 +1,18 @@
 from Entities.usuario import User
 from config import db
+from sqlalchemy import text
 
 
 class UsuarioRepository():
 
     def getAll(self):
         users = User.query.filter_by(statusUsuario=1)
+        users = users.filter(text(""))
         return users
 
     def getId(self, id):
         user = User.query.filter_by(PK_usuario=id, statusUsuario=1).first()
         return user
-
 
     def save(self, user):
         db.session.add(user)
@@ -27,5 +28,3 @@ class UsuarioRepository():
     def searchEmail(self, email):
         user = User.query.filter_by(emailUsuario=email, statusUsuario=1).first()
         return user
-
-
