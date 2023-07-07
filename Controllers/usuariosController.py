@@ -17,7 +17,9 @@ usuarioService = UsuarioService()
 @handle_exceptions
 def getAll():
     tokenHandler.validator(request.headers.get('Authorization'), ['Administrador'])
-    users = usuarioService.getAll()
+    parametros = request.args
+    filtros = dict(parametros)
+    users = usuarioService.getAll(filtros)
     usersdto = UserDto(many=True)
     result = usersdto.dump(users)
     return jsonify(result)
