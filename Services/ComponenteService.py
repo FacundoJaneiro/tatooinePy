@@ -7,8 +7,8 @@ class ComponenteService(InterfazComponenteService):
     def __init__(self):
         self.componenteRepository = ComponenteRepository()
 
-    def getAll(self,tipo):
-        componentes = self.componenteRepository.getAll(tipo)
+    def getAll(self,tipo,filtros):
+        componentes = self.componenteRepository.getAll(tipo,filtros)
         return componentes
 
     def getId(self,tipo,id):

@@ -3,7 +3,7 @@ from marshmallow import Schema, fields
 
 class ComponenteModificacionDto(Schema):
     PK_componente = fields.Integer(required=True, error_messages={'required': 'El campo PK_componente es requerido.'})
-    identifiacion = fields.String()
+    identificacion = fields.String()
     nombre = fields.String()
     descripcion = fields.String()
     codigo = fields.String()

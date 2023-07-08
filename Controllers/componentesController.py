@@ -18,7 +18,9 @@ componenteService = ComponenteService()
 def getComponentes():
     tokenHandler.validator(request.headers.get('Authorization'), ['Administrador'])
     tipo = 1 if 'materiasPrimas' in request.path else 2
-    componentes = componenteService.getAll(tipo)
+    parametros = request.args
+    filtros = dict(parametros)
+    componentes = componenteService.getAll(tipo,filtros)
     componenteDto = ComponenteDto(many=True)
     result = componenteDto.dump(componentes)
     return jsonify(result)

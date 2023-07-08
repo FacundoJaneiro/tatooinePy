@@ -2,7 +2,7 @@ from marshmallow import Schema, fields
 
 
 class ComponenteAltaDto(Schema):
-    identifiacion = fields.String(required=True, error_messages={'required': 'El campo identifiacion es requerido.'})
+    identificacion = fields.String(required=True, error_messages={'required': 'El campo identifiacion es requerido.'})
     nombre = fields.String(required=True, error_messages={'required': 'El campo nombre es requerido.'})
     descripcion = fields.String(required=True, error_messages={'required': 'El campo descripcion es requerido.'})
     codigo = fields.String(required=True, error_messages={'required': 'El campo codigo es requerido.'})
