@@ -10,8 +10,8 @@ class UsuarioService(InterfazUsuarioService):
     def __init__(self):
         self.usuarioRepository = UsuarioRepository()
 
-    def getAll(self):
-        users = self.usuarioRepository.getAll()
+    def getAll(self,filtros):
+        users = self.usuarioRepository.getAll(filtros)
         return users
 
     def getId(self, id):

@@ -7,7 +7,7 @@ from config import db
 class Componente(db.Model):
     __tablename__ = 'componentes'
     PK_componente = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    identifiacion = db.Column(db.String(30))
+    identificacion = db.Column(db.String(30))
     nombre = db.Column(db.String(50))
     descripcion = db.Column(db.String(120))
     codigo = db.Column(db.String(50))

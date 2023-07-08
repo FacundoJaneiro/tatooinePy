@@ -3,7 +3,7 @@ from marshmallow import Schema, fields
 
 class ComponenteDto(Schema):
     PK_componente = fields.Integer()
-    identifiacion = fields.String()
+    identificacion = fields.String()
     nombre = fields.String()
     descripcion = fields.String()
     codigo = fields.String()
